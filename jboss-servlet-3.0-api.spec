@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          1.0.1
-Release:          9.10%{?dist}
+Release:          9.11%{?dist}
 Summary:          Java Servlet 3.0 API
 License:          CDDL
 Url:              http://www.jboss.org
@@ -16,15 +16,15 @@ Url:              http://www.jboss.org
 # cd jboss-servlet-api_spec/ && git archive --format=tar --prefix=jboss-servlet-3.0-api/ jboss-servlet-api_3.0_spec-1.0.1.Final | xz > jboss-servlet-3.0-api-1.0.1.Final.tar.xz
 Source0:          jboss-servlet-3.0-api-%{namedversion}.tar.xz
 
-BuildRequires:    maven30-jboss-specs-parent
+BuildRequires:    %{?scl_prefix}jboss-specs-parent
 BuildRequires:    %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:    %{?scl_prefix_java_common}maven-local
-BuildRequires:    maven30-maven-compiler-plugin
-BuildRequires:    maven30-maven-install-plugin
-BuildRequires:    maven30-maven-jar-plugin
-BuildRequires:    maven30-maven-javadoc-plugin
-BuildRequires:    maven30-maven-enforcer-plugin
-BuildRequires:    maven30-maven-dependency-plugin
+BuildRequires:    %{?scl_prefix}maven-compiler-plugin
+BuildRequires:    %{?scl_prefix}maven-install-plugin
+BuildRequires:    %{?scl_prefix}maven-jar-plugin
+BuildRequires:    %{?scl_prefix}maven-javadoc-plugin
+BuildRequires:    %{?scl_prefix}maven-enforcer-plugin
+BuildRequires:    %{?scl_prefix}maven-dependency-plugin
 
 BuildArch:        noarch
 
@@ -39,19 +39,19 @@ This package contains the API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n jboss-servlet-3.0-api
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_file : %{pkg_name}
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -63,6 +63,9 @@ set -e -x
 %doc LICENSE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0.1-9.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.0.1-9.10
 - maven33 rebuild
 
