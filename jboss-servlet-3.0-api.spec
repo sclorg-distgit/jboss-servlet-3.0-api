@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}%{pkg_name}
 Version:          1.0.1
-Release:          9.11%{?dist}
+Release:          9.12%{?dist}
 Summary:          Java Servlet 3.0 API
 License:          CDDL
 Url:              http://www.jboss.org
@@ -18,7 +18,7 @@ Source0:          jboss-servlet-3.0-api-%{namedversion}.tar.xz
 
 BuildRequires:    %{?scl_prefix}jboss-specs-parent
 BuildRequires:    %{?scl_prefix_java_common}javapackages-tools
-BuildRequires:    %{?scl_prefix_java_common}maven-local
+BuildRequires:    %{?scl_prefix}maven-local
 BuildRequires:    %{?scl_prefix}maven-compiler-plugin
 BuildRequires:    %{?scl_prefix}maven-install-plugin
 BuildRequires:    %{?scl_prefix}maven-jar-plugin
@@ -63,6 +63,9 @@ set -e -x
 %doc LICENSE
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.0.1-9.12
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0.1-9.11
 - maven33 rebuild #2
 
